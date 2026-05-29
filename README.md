@@ -11,14 +11,7 @@
   - Microsoft Teams
   - Xbox (все компоненты)
   - Погода, Центр отзывов и другие
-
-## Установка и использование
-```bash
-git clone https://github.com/LiMan-art/windows-bloatware-remover.git
-cd windows-bloatware-remover
-python app.py
-
-# Требования
+## Требования
 - Windows 10/11
 - Python 3.x
 
@@ -26,3 +19,11 @@ python app.py
 - Создайте точку восстановления системы перед использованием
 - Некоторые удаленные приложения нельзя будет восстановить через стандартные средства
 - Скрипт не удаляет ваш личный OneDrive, только само приложение
+
+## Установка и использование
+```bash
+git clone https://github.com/LiMan-art/windows-bloatware-remover.git
+cd windows-bloatware-remover
+python app.py
+
+
