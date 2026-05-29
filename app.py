@@ -13,7 +13,7 @@ def output_mess():
     # ==== ПРОВЕРКА УСТАНОВЛЕН ЛИ POWERSHELL ====
     try:
         subprocess.run(['powershell.exe','-Command','exit'],creationflags=CREATE_NO_WINDOWS)
-        print('PoserShell установлен!')
+        print('PowerShell установлен!')
     except FileNotFoundError:
         input('Powershell не установлен. Ничего не получится, делай все руками! \nДля вохода нажмите Enter')
         exit(1)
