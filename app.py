@@ -15,13 +15,13 @@ def output_mess():
         subprocess.run(['powershell.exe','-Command','exit'],creationflags=CREATE_NO_WINDOWS)
         print('PowerShell установлен!')
     except FileNotFoundError:
-        input('Powershell не установлен. Ничего не получится, делай все руками! \nДля вохода нажмите Enter')
+        input('Powershell не установлен. Ничего не получится, делай все руками! \nДля выхода нажмите Enter')
         exit(1)
 
     # ==== ВВОИМ КОМАНДУ ДЛЯ ПОЛУЧЕНИЯ РУЗУЛЬТАТА УСТАНОВЛЕН ЛИ ONEDRIVE ИЛИ НЕТ =====
     print('Проверка на установленый OneDrive!')
     
-    result_oneDrive = subprocess.run(['powershell.exe', '-Command', r'[bool](Get-ItemProperty HKLM:\Software\Microsoft\Windows\CurrentVersion\Uninstall* | Where { $_.DisplayName -like "OneDrive*"})'], capture_output=True,text=True,creationflags=CREATE_NO_WINDOWS)
+    result_oneDrive = subprocess.run(['powershell.exe', '-Command', r'[bool](Get-Item "HKCU:\Software\Microsoft\Windows\CurrentVersion\Uninstall\*" -ErrorAction SilentlyContinue | Where-Object { $_.PSChildName -like "*OneDrive*" -or $_.GetValue("DisplayName") -like "*OneDrive*" })'], capture_output=True,text=True,creationflags=CREATE_NO_WINDOWS)
 
     output_result_oneDrive = result_oneDrive.stdout
     result_install_oneDrive = output_result_oneDrive.splitlines()
