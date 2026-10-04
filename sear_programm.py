@@ -20,9 +20,7 @@ def sea_programm():
         "Преобразование речи Xbox в текст": "Microsoft.XboxSpeechToTextOverlay",
         "Компонент для авторизации в профиль Xbox": "Microsoft.XboxIdentityProvider",
         "2-я Игровая панель": "Microsoft.XboxGameOverlay",
-        "Вызов интерфейса Xbox внутри игр": "Microsoft.XboxGameCallableUI",
         "Центр отзывов": "Microsoft.WindowsFeedbackHub",
-
     }
 
     result = subprocess.run(
@@ -43,13 +41,4 @@ def sea_programm():
             pr_app.append(i)
             del_app.append(b)
 
-    print(f"[*] Всего было найдено {len(pr_app)} программ(ы).")
-    
-    for i, app in enumerate(pr_app, start=1):
-        print(f"{i}. {app}")
-
-    return del_app
-
-
-
-
+    return pr_app, del_app

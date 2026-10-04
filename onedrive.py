@@ -1,7 +1,7 @@
 import os
-from delete_oneDrive import finish
 
 
+# Узнаем установлен ли OneDrive
 def sear_OneDrive():
     file_oneDrive = [
         r"%LocalAppData%\Microsoft\OneDrive\OneDrive.exe",
@@ -13,18 +13,27 @@ def sear_OneDrive():
 
         a = os.path.expandvars(i)
         if os.path.isfile(a):
-
+            print("[*] OneDrive установлен")
             return a
+
 
     return None
 
 
-def finish_delete_OneDrive():
+# Узнаем где лежит ununstall файл
+def sear_uninstall_oneDrive():
+    a = sear_OneDrive()
+    if a:
+        file_exe = [
+            r"C:\Windows\SysWOW64\OneDriveSetup.exe",
+            r"C:\Windows\System32\OneDriveSetup.exe",
+        ]
 
-    path_to_exe = sear_OneDrive()
-
-    if path_to_exe:
-        print("[*] OneDrive установлен \nНачинаю удаление...")
-        finish()
+        for real_exe in file_exe:
+            if os.path.isfile(real_exe):
+                print("[*] Uninstall файл найден")
+                return real_exe
+        return None
     else:
-        print("[*] OneDrive не найден")
+        print("[*] OneDrive НЕ установлен")
+        return None
