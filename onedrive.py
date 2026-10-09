@@ -11,19 +11,19 @@ def sear_OneDrive():
 
     for i in file_oneDrive:
 
-        a = os.path.expandvars(i)
-        if os.path.isfile(a):
+        dr_oneDrive = os.path.expandvars(i)
+        if os.path.isfile(dr_oneDrive):
             print("[*] OneDrive установлен")
-            return a
+            return dr_oneDrive
 
-
+    print("[*] OneDrive НЕ установлен")
     return None
 
 
 # Узнаем где лежит ununstall файл
 def sear_uninstall_oneDrive():
-    a = sear_OneDrive()
-    if a:
+    dr_oneDrive = sear_OneDrive()
+    if dr_oneDrive:
         file_exe = [
             r"C:\Windows\SysWOW64\OneDriveSetup.exe",
             r"C:\Windows\System32\OneDriveSetup.exe",
@@ -33,7 +33,6 @@ def sear_uninstall_oneDrive():
             if os.path.isfile(real_exe):
                 print("[*] Uninstall файл найден")
                 return real_exe
-        return None
-    else:
-        print("[*] OneDrive НЕ установлен")
+
+        print("[*] Uninstall файл НЕ найден")
         return None

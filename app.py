@@ -1,5 +1,6 @@
 from delete_programm import finish_delete_App
 from delete_oneDrive import delete_OneDrive
+import os
 
 
 def one_or_app():
@@ -8,9 +9,11 @@ def one_or_app():
         inp = input("[*] Что вы хотите удалить? \n[1] - OneDrive \n[2] - Мусор ОС \n[3] - Выход\n")
 
         if inp == "1":
+            os.system('cls')
             delete_OneDrive()
 
         elif inp == "2":
+            os.system('cls')
             finish_delete_App()
             
         elif inp == "3":

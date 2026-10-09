@@ -6,33 +6,35 @@ import subprocess
 CREATE_NO_WINDOWS = 0x08000000
 
 
-pr_app, del_app = sea_programm()
-
-
 def finish_delete_App():
-    print(f"[*] Всего было найдено {len(pr_app)} программ(ы).")
+    pr_app, del_app = sea_programm()
 
-    for i, app in enumerate(pr_app, start=1):
-        print(f"{i}. {app}")
+    if len(pr_app) != 0:
+        print(f"[*] Всего было найдено {len(pr_app)} программ(ы).")
 
-    while True:
+        for i, app in enumerate(pr_app, start=1):
+            print(f"{i}. {app}")
 
-        inp_user = input("[*] Хотите удалить (Да/Нет)? ").strip().lower()
+        while True:
 
-        if inp_user == "да":
+            inp_user = input("[*] Хотите удалить (Да/Нет)? ").strip().lower()
 
-            delete_powershell()
-            break
+            if inp_user == "да":
 
-        elif inp_user == "нет":
+                delete_powershell(del_app)
+                break
 
-            print("[*] Удаление отменено")
-            break
+            elif inp_user == "нет":
 
-        print("[*] Некорректный ввод ")
+                print("[*] Удаление отменено")
+                break
+
+            print("[*] Некорректный ввод ")
+    else:
+        print("[*] Программ для удаления не обнаружено!")
 
 
-def delete_powershell():
+def delete_powershell(del_app):
     for i in range(len(del_app)):
 
         try:

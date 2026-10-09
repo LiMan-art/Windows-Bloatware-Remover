@@ -1,22 +1,25 @@
 import subprocess, os
-from onedrive import sear_uninstall_oneDrive
+from onedrive import sear_uninstall_oneDrive, sear_OneDrive
 
 # Скрыть хрень
 CREATE_NO_WINDOWS = 0x08000000
 
 
 def stop_OneDrive():
-    # Останавливаем процесс
-    subprocess.run(
-        [
-            "powershell.exe",
-            "-Command",
-            'Stop-Process -Name "OneDrive.Sync.Service" -Force',
-        ],
-        capture_output=True,
-        text=True,
-        creationflags=CREATE_NO_WINDOWS,
-    )
+    dr_oneDrive = sear_OneDrive()
+
+    if dr_oneDrive:
+        # Останавливаем процесс
+        subprocess.run(
+            [
+                "powershell.exe",
+                "-Command",
+                'Stop-Process -Name "OneDrive.Sync.Service" -Force',
+            ],
+            capture_output=True,
+            text=True,
+            creationflags=CREATE_NO_WINDOWS,
+        )
 
 
 def delete_OneDrive():
@@ -38,5 +41,3 @@ def delete_OneDrive():
         )
 
         print("[*] OneDrive удален")
-    else: 
-        print("[*] Uninstall файл НЕ найден")
