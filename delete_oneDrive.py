@@ -25,11 +25,10 @@ def stop_OneDrive():
 def delete_OneDrive():
     real_exe = sear_uninstall_oneDrive()
     if real_exe:
-        subprocess.run(
+        result = subprocess.run(
             ["powershell.exe", "-Command", f'& "{real_exe}" /uninstall'],
             creationflags=CREATE_NO_WINDOWS,
         )
-
         # Убираем эту шляпу из панели навигации в проводнике
         subprocess.run(
             [
@@ -39,5 +38,7 @@ def delete_OneDrive():
             ],
             creationflags=CREATE_NO_WINDOWS,
         )
-
-        print("[*] OneDrive удален")
+        if result.returncode == 0:
+            print("[*] OneDrive удален")
+        else:
+            print("[*] Ошибка удаления, запустите от имени администратора")
